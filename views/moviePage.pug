@@ -1,0 +1,28 @@
+link(href="style.css" rel="stylesheet")
+
+div(id="navBar")
+    ul
+        li
+            a(href="/" class="nav_item") Home
+        li
+            a(href="/moviePage" class="nav_item") Search A Movie
+        li
+            a(href="/signup" class="nav_item") Login
+form(id="searchTerms" method="POST")
+    p Movie Title:
+        input(id="title" name="title" type="text" placeholder="Avengers")
+    p Genre:
+        input(id="genre" name="genre" type="text" placeholder="Action")
+    p Actor:
+        input(id="actor" name="actor" type="text" placeholder="Robert Downey Jr." autocomplete="off")
+
+    input(type='submit' value='Search')
+a(href='/logout')
+    button Log Out
+a(href='/editAccount')
+    button Edit Account
+
+div(id='container')
+    block content
+
+script(src="/js/movieReviews.js")

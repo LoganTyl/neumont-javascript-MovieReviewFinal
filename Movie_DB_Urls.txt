@@ -1,0 +1,8 @@
+https://api.themoviedb.org/3/trending/all/week?api_key=da2444bb6b2f3c7c2a698917f8de85e4
+-Get list of movies trending in the week
+
+https://api.themoviedb.org/3/movie/343611?api_key=da2444bb6b2f3c7c2a698917f8de85e4
+-Get details for one movie by id
+
+https://image.tmdb.org/t/p/w500/vViRXFnSyGJ2fzMbcc5sqTKswcd.jpg
+-image

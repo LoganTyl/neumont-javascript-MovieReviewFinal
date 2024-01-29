@@ -1,0 +1,27 @@
+{
+  "name": "backend-server-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "predeploy": "npm run start",
+    "deploy": "gh-pages -d start"
+  },
+  "author": "Dery Germann",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parse": "^0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.26",
+    "react-google-recaptcha": "^2.1.0",
+    "request": "^2.88.2",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

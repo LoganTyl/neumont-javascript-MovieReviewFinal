@@ -1,0 +1,57 @@
+a(href='/moviePage')
+    button Go Back
+if account.isAdmin
+    a(href='/adminPage')
+        button Visit Admin Page
+
+form(method='post' action='/updateAccountData' name="editAccountForm" onsubmit="return verifyUpdateAccount()")
+    label(for="username") Username
+    input(type="text" name='username' value=account.username)
+
+    label(for="password") New Password
+    input(type="password" name='password' )
+    label(for="password") Re-enter Password
+    input(type="password" name='passwordReentry' )
+    p(id="passwordWarning" class="warning" style="display:none") Passwords must match
+
+    label(for="firstName") First Name
+    input(type="text" name='firstName' value=account.fname)
+
+    label(for="lastName") Last Name
+    input(type="text" name='lastName' value=account.lname)
+
+    label(for="email") Email
+    input(type="text" name='email' value=account.email)
+
+    label(for="street") Street
+    input(type="text" name='street' value=account.street)
+
+    label(for="city") City
+    input(type="text" name='city' value=account.city)
+
+    label(for="state") State
+    input(type="text" name='state' value=account.state)
+
+    label(for="zipCode") Zip Code
+    input(type="text" name='zipCode' value=account.zip_code)
+
+    label(for="phone") Phone
+    input(type="text" name='phone' value=account.phone)
+    
+    input(type="submit" value='Update Account Info')
+
+each account_review in account.reviews
+    form(class='reviewForm' method='post' action='/editReview')
+        input(type="hidden" name="movieId" value=account_review.movieId)
+        input(type="hidden" name="email" value=account.email)
+        label(for="review") Edit a Review:
+            textarea(id="reviewInput" name="review", cols="30", rows="10" value=account_review.review) #{account_review.review}
+        label(for='rating') Edit Rating:
+            input(type='range' min='0' max='9' name="rating" class='slider' value=account_review.rating)
+            img(src=`img/star_rating_${account_review.rating}.png`)
+        input(type="submit" value='Update Review')
+
+a(href='/logout')
+    button Log Out
+
+script(src="/js/movieReviews.js")

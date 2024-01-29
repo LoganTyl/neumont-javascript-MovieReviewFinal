@@ -1,0 +1,16 @@
+a(href='/')
+    button Go To Login
+
+div(id="resetPasswordForm")
+    form(method='post' action='' name="updatePassword" onsubmit="return verifyResetPassword()")
+
+        label(for="password") New Password
+        input(type="password" name='password' )
+        p(id="passwordError" class="warning" style="display:none")
+        label(for="password") Re-enter Password
+        input(type="password" name='passwordReentry' )
+        p(id="passwordWarning" class="warning" style="display:none") Passwords must match
+        
+        input(type="submit" value='Update Account Info')
+
+script(src="/js/resetPassword.js")

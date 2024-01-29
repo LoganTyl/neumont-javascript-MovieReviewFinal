@@ -1,0 +1,115 @@
+extends moviePage
+
+block content
+    if movieList.actor
+        each movie in movieList
+            each known_for in movie.known_for
+                div(class='parent-div')
+                    div(class='box')
+                        if known_for.media_type === "movie"
+                            if known_for.poster_path
+                                img(src=`https://image.tmdb.org/t/p/w500${known_for.poster_path}`)
+                            else 
+                                if known_for.backdrop_path
+                                    img(src=`https://image.tmdb.org/t/p/w500${known_for.backdrop_path}`)
+                                else 
+                                    img(alt='Movie Poster Does Not Exist')
+                            h1 #{known_for.original_title}
+                    div(class='box' style='display: block;')
+                        form(class='reviewForm' method='post' action='/sendReview')
+                            input(type="hidden" name="movieId" value=known_for.id)
+                            label(for="review") Add a Review:
+                                textarea(id="reviewInput" name="review", cols="30", rows="10" placeholder="Type your review here...")
+                            label(for='rating') Add a Rating:
+                                input(type='range' min='0' max='9' name="rating" class='slider' value='0')
+                                img(src='img/star_rating_0.png')
+                            input(type="submit" value='Submit Review')
+                    div(class='box')
+                        //- All Reviews
+                        each review in reviews
+                            if known_for.id == review.review.movieId
+                                if loggedInUser.email == review.email
+                                    form(class='reviewForm' method='post' action='/editReview')
+                                        input(type="hidden" name="movieId" value=movie.id)
+                                        input(type="hidden" name="email" value=review.email)
+                                        label(for="review") Add a Review:
+                                            textarea(id="reviewInput" name="review", cols="30", rows="10" value=review.review.review) #{review.review.review}
+                                        label(for='rating') Add a Rating:
+                                            input(type='range' min='0' max='9' name="rating" class='slider' value=review.review.rating)
+                                            img(src=`img/star_rating_${review.review.rating}.png`)
+                                        p Reviewed by #{review.name}
+                                        input(type="submit" value='Edit Review')
+                                else
+                                    p #{review.review.review}
+                                    img(src=`img/star_rating_${review.review.rating}.png`)
+                                    p Reviewed by #{review.name}
+                
+    if movieList.title
+        each movie in movieList
+            div(class='parent-div')
+                div(class='box')    
+                    img(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}`)
+                    h1 #{movie.original_title}
+                div(class='box' style='display: block;')
+                    form(class='reviewForm' method='post' action='/sendReview')
+                        input(type="hidden" name="movieId" value=movie.id)
+                        label(for="review") Add a Review:
+                            textarea(id="reviewInput" name="review", cols="30", rows="10" placeholder="Type your review here...")
+                        label(for='rating') Add a Rating:
+                            input(type='range' min='0' max='9' name="rating" class='slider' value='0')
+                            img(src='img/star_rating_0.png')
+                        input(type="submit" value='Submit Review')
+                div(class='box')
+                    //- All Reviews
+                    each review in reviews
+                        if movie.id == review.review.movieId 
+                            if loggedInUser.email == review.email
+                                form(class='reviewForm' method='post' action='/editReview')
+                                    input(type="hidden" name="movieId" value=movie.id)
+                                    input(type="hidden" name="email" value=review.email)
+                                    label(for="review") Edit a Review:
+                                        textarea(id="reviewInput" name="review", cols="30", rows="10" value=review.review.review) #{review.review.review}
+                                    label(for='rating') Edit Rating:
+                                        input(type='range' min='0' max='9' name="rating" class='slider' value=review.review.rating)
+                                        img(src=`img/star_rating_${review.review.rating}.png`)
+                                    p Reviewed by #{review.name}
+                                    input(type="submit" value='Edit Review')
+                            else 
+                                p #{review.review.review}
+                                img(src=`img/star_rating_${review.review.rating}.png`)
+                                p Reviewed by #{review.name}
+    
+    if movieList.genre
+        each movie in movieList
+            div(class='parent-div')
+                div(class='box')
+                    img(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}`)
+                    h1 #{movie.original_title}
+                div(class='box' style='display: block;')
+                    form(class='reviewForm' method='post' action='/sendReview')
+                        input(type="hidden" name="movieId" value=movie.id)
+                        label(for="review") Add a Review:
+                            textarea(id="reviewInput" name="review", cols="30", rows="10" placeholder="Type your review here...")
+                        label(for='rating') Add a Rating:
+                            input(type='range' min='0' max='9' name="rating" class='slider' value='0')
+                            img(src='img/star_rating_0.png')
+                        input(type="submit" value='Submit Review')
+                div(class='box')
+                    //- All Reviews
+                    each review in reviews
+                        if movie.id == review.review.movieId 
+                            if loggedInUser.email == review.email
+                                form(class='reviewForm' method='post' action='/editReview')
+                                    input(type="hidden" name="movieId" value=movie.id)
+                                    input(type="hidden" name="email" value=review.email)
+                                    label(for="review") Edit a Review:
+                                        textarea(id="reviewInput" name="review", cols="30", rows="10" value=review.review.review) #{review.review.review}
+                                    label(for='rating') Edit Rating:
+                                        input(type='range' min='0' max='9' name="rating" class='slider' value=review.review.rating)
+                                        img(src=`img/star_rating_${review.review.rating}.png`)
+                                    p Reviewed by #{review.name}
+                                    input(type="submit" value='Edit Review')
+                            else 
+                                p #{review.review.review}
+                                img(src=`img/star_rating_${review.review.rating}.png`)
+                                p Reviewed by #{review.name}

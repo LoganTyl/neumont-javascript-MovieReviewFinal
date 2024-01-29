@@ -1,0 +1,40 @@
+link(href='style.css' rel='stylesheet')
+
+div(class='admin-container')
+    div(class='user-list')
+        each account in accounts
+            div(class='user')
+                form(method='post' action='/deleteAccount')
+                    if account.isAdmin
+                        h1 Admin
+                    p #{account.fname} #{account.lname}
+                    p #{account.username}
+                    p #{account.street}
+                    p #{account.city}
+                    p #{account.state}
+                    p #{account.zip_code}
+                    p #{account.email}
+                    input(type='text' name='email' value=account.email hidden) 
+                    p #{account.phone}
+                    input(type="submit" value='Delete Account')
+                if !account.isAdmin
+                    form(method='post' action='/makeAdmin')
+                        input(type='text' name='email' value=account.email hidden)
+                        input(type="submit" value='Make Admin')
+                else 
+                    form(method='post' action='/makeNotAdmin')
+                        input(type='text' name='email' value=account.email hidden)
+                        input(type="submit" value='Make Not Admin')
+
+
+    div(class='review-list')
+        each account in accounts
+            each review in account.reviews
+                div(class='review')
+                    form(method='post' action='/deleteReview')
+                        input(type='text' name='email' value=account.email hidden) 
+                        input(type='text' name='movieId' value=review.movieId hidden) 
+                        p #{review.review}
+                        p #{review.rating}
+                        p #{review.movieId}
+                        input(type="submit" value='Delete Review') 

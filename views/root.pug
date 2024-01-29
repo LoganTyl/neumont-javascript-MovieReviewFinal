@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        link(href="style.css" rel="stylesheet")
+    body
+        div(id="navBar")
+            ul
+                li
+                    a(href="/" class="nav_item") Home
+                li
+                    a(href="/moviePage" class="nav_item") Search A Movie
+                li
+                    a(href="/signup" class="nav_item") Login
+        form(id="movieReviewForm" method="POST")
+            p Username:
+                input(id="emailInput" name="username" type="text" placeholder="LoganT")
+            br
+            p Password: 
+                input(id='passwordInput' name='password' type='password')
+            p AgustinD
+            p UoNt-Kvx2
+            p Username must look like "LoganT"
+            p mohammedr
+            p QIsdf55ly/8
+            //- p Rating:
+            //-     select(id="ratingInput" name="rating" disabled)
+            //-         option(value="1") 1 star
+            //-         option(value="2") 2 star
+            //-         option(value="3") 3 star
+            //-         option(value="4") 4 star
+            //-         option(value="5") 5 star
+            //- br
+            //- p Review:
+            //-     textarea(id="reviewInput" name="review", cols="30", rows="10" disabled)
+            //- br
+            input(id="submitBtn" type="submit" disabled)
+        a(href="/forgotPasswordSendEmail") Forgot Password?
+
+    script var data = !{JSON.stringify(accounts)}
+    script(src="/js/script.js")
